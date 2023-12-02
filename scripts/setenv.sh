@@ -1,0 +1,17 @@
+export GALE_RECOVERY_IMG='chromeos_9334.41.3_gale_recovery_stable-channel_mp.bin.zip'
+export GALE_OPENWRT_BIN_ZIP='openwrt-23.05.2-ipq40xx-chromium-google_wifi-squashfs-factory.bin.zip'
+export GALE_ZONENAME='America/Los Angeles'
+export GALE_TIMEZONE='PST8PDT,M3.2.0,M11.1.0'
+export GALE_MAIN_WIFI_NAME='MAINWIFI'
+export GALE_MAIN_WIFI_PASSWORD='MAINWIFIPASSWORD'
+export GALE_MAIN_WIFI_ENCRYPTION='sae-mixed'
+export GALE_GUEST_WIFI_NAME='GUESTWIFI'
+export GALE_GUEST_WIFI_PASSWORD='GUESTWIFIPASSWORD'
+export GALE_GUEST_WIFI_ENCRYPTION='sae-mixed'
+export GALE_GUEST_WIFI_VLAN=11
+export GALE_IOT_WIFI_NAME='IOTWIFI'
+export GALE_IOT_WIFI_PASSWORD='IOTWIFIPASSWORD'
+export GALE_IOT_WIFI_ENCRYPTION='psk2'
+export GALE_IOT_WIFI_VLAN=12
+
+export GALE_ENV_SETUP=1
