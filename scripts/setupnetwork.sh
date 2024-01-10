@@ -18,6 +18,8 @@ uci add network device # =cfg070f15
 uci set network.@device[-1].type='bridge'
 uci set network.@device[-1].name='br-guest'
 uci add_list network.@device[-1].ports=lan.${GALE_GUEST_WIFI_VLAN}
+uci add_list network.@device[-1].ports=wan.${GALE_GUEST_WIFI_VLAN}
+uci add_list firewall.@zone[0].network='guest'
 uci set network.guest=interface
 uci set network.guest.proto='none'
 uci set network.guest.device='br-guest'
@@ -28,12 +30,15 @@ uci add network device # =cfg0b0f15
 uci set network.@device[-1].type='bridge'
 uci set network.@device[-1].name='br-iot'
 uci add_list network.@device[-1].ports=lan.${GALE_IOT_WIFI_VLAN}
+uci add_list network.@device[-1].ports=wan.${GALE_GUEST_WIFI_VLAN}
 uci set network.iot=interface
+uci add_list firewall.@zone[0].network='iot'
 uci set network.iot.proto='none'
 uci set network.iot.device='br-iot'
 uci set network.iot.hostname='*'
 
 uci commit network
+uci commit firewall
 
 echo LAN configured, setting up WiFi
 sleep 3
