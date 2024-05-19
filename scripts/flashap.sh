@@ -26,7 +26,7 @@ IP_ADDR=192.168.1.1
 ./waitping.sh ${IP_ADDR}
 
 ## Extract and copy the firmware
-unzip -p ../../${GALE_OPENWRT_BIN_ZIP} | ssh root@${IP_ADDR} "cat > /tmp/openwrt.bin"
+unzip -p ../img/${GALE_OPENWRT_BIN_ZIP} | ssh root@${IP_ADDR} "cat > /tmp/openwrt.bin"
 
 ## Write firmware to eMMC and clobber secondary GPT at end of eMMC
 ssh root@${IP_ADDR} -C "dd if=/dev/zero bs=512 seek=7634911 of=/dev/mmcblk0 count=33 && \
