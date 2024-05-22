@@ -29,17 +29,19 @@ IP_ADDR=192.168.1.1
 unzip -p ../img/${GALE_OPENWRT_BIN_ZIP} | ssh root@${IP_ADDR} "cat > /tmp/openwrt.bin"
 
 ## Write firmware to eMMC and clobber secondary GPT at end of eMMC
+echo "Writing firmware to the device"
 ssh root@${IP_ADDR} -C "dd if=/dev/zero bs=512 seek=7634911 of=/dev/mmcblk0 count=33 && \
 dd if=/tmp/openwrt.bin of=/dev/mmcblk0"
 
 ## Ideally, we might add a GPT repair step, so primary and alternate are intact, but this isn't strictly necessary.
+echo "Resizing the disk"
 ssh root@${IP_ADDR} -C "opkg update && opkg install cfdisk resize2fs"
 
 ## Resize the second partition to use the whole space and reboot into the flashed device
 ssh -t root@${IP_ADDR} "cfdisk /dev/mmcblk0"
 
 ## Reboot
-echo Rebooting
+echo "Rebooting"
 ssh root@${IP_ADDR} reboot
 
 sleep 5

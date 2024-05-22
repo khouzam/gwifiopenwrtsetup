@@ -30,11 +30,6 @@ scp -O ./setupconfig.sh root@${IP_ADDR}:/tmp
 ## Run the script to setup the AP
 ssh -t root@${IP_ADDR} "source /tmp/setenv.sh && /tmp/setupconfig.sh ${1}"
 
-echo Setting up secure SSH access
-if [[ -f ./openwrt.key.pub ]]; then
-    ssh root@${IP_ADDR} "tee -a /etc/dropbear/authorized_keys" <./openwrt.key.pub
-fi
-
 echo "Setup complete, rebooting"
 ssh root@${IP_ADDR} reboot
 
@@ -47,7 +42,14 @@ scp -O ./setenv.sh root@${IP_ADDR}:/tmp
 scp -O ./setupnetwork.sh root@${IP_ADDR}:/tmp
 ssh -t root@${IP_ADDR} "source /tmp/setenv.sh && /tmp/setupnetwork.sh ${1}"
 
-echo "Rebooting the AP has been fully configured and can be plugged into it's correct spot"
-ssh -t root@${IP_ADDR} reboot
-
+if [[ -f ./openwrt.key.pub ]]; then
+    echo Setting up secure SSH access and disabling password auth
+    ssh root@${IP_ADDR} "tee -a /etc/dropbear/authorized_keys" <./openwrt.key.pub
+    scp -O ./setssh.sh root@${IP_ADDR}:/tmp
+    echo "Rebooting the AP has been fully configured and can be plugged into it's correct spot"
+    ssh -t root@${IP_ADDR} "/tmp/setssh.sh && reboot"
+else
+    echo "Rebooting the AP has been fully configured and can be plugged into it's correct spot"
+    ssh -t root@${IP_ADDR} reboot
+fi
 popd
