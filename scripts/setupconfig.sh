@@ -9,7 +9,7 @@ fi
 echo Installing Packages
 opkg remove wpad-basic-mbedtls
 opkg update
-opkg install luci luci-ssl wpad-mbedtls dawn luci-app-dawn
+opkg install luci luci-ssl wpad-mbedtls dawn luci-app-dawn usteer luci-app-usteer
 
 echo Installed the packages. Configuring device
 sleep 3
