@@ -13,7 +13,7 @@ unzip -p chromeos_9334.41.3_gale_recovery_stable-channel_mp.bin.zip | sudo dd of
 
 2. Flash another USB drive with the OpenWRT image
 ```
-unzip -p openwrt-23.05.2-ipq40xx-chromium-google_wifi-squashfs-factory.bin.zip | sudo dd of=/dev/<sdx> bs=1M status=progress
+unzip -p openwrt-24.10.0-ipq40xx-chromium-google_wifi-squashfs-factory.bin.zip | sudo dd of=/dev/<sdx> bs=1M status=progress
 ```
 
 ## Flashing the device
