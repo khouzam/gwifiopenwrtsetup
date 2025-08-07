@@ -1,5 +1,5 @@
 export GALE_RECOVERY_IMG='chromeos_9334.41.3_gale_recovery_stable-channel_mp.bin.zip'
-export GALE_OPENWRT_BIN_ZIP='openwrt-24.10.0-ipq40xx-chromium-google_wifi-squashfs-factory.bin.zip'
+export GALE_OPENWRT_BIN_ZIP='openwrt-24.10.2-ipq40xx-chromium-google_wifi-squashfs-factory.bin.zip'
 export GALE_ZONENAME='America/Los Angeles'
 export GALE_TIMEZONE='PST8PDT,M3.2.0,M11.1.0'
 export GALE_MAIN_WIFI_NAME='MAINWIFI'
